@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Set the OpenAI API key
-openai.api_key = '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'
+openai.api_key = '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'
 
 messages = [{"role": "system", "content": 'You are an AI-powered summarization assistant. Help users by summarizing and organizing their thoughts. Be funny and make jokes.'}]
 
