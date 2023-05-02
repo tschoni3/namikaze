@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import base64
 import openai
 from flask import Flask, request, jsonify
@@ -6,11 +7,13 @@ from flask_cors import CORS
 from pydub import AudioSegment
 from werkzeug.utils import secure_filename
 
+load_dotenv()
+
 app = Flask(__name__)
 CORS(app)
 
 # Set the OpenAI API key
-openai.api_key = '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'
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 messages = [{"role": "system", "content": 'You are an AI-powered summarization assistant. Help users by summarizing and organizing their thoughts. Be funny and make jokes.'}]
 
