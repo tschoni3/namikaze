@@ -15,7 +15,7 @@ CORS(app)
 # Set the OpenAI API key
 openai.api_key = os.environ.get('OPENAI_API_KEY')
 
-messages = [{"role": "system", "content": 'You are an AI-powered summarization assistant. Help users by summarizing and organizing their thoughts. Be funny and make jokes.'}]
+messages = [{"role": "system", "content": 'You are an AI-powered summarization assistant. Help users by summarizing and organizing their thoughts. Give motivation and inspiration to user.'}]
 
 @app.route('/')
 def index():
@@ -53,7 +53,9 @@ def transcribe():
     messages.append({"role": "assistant", "content": system_message})
 
     chat_transcript = ""
-    for message in messages:
+    # Get only the last two messages (the latest user's request and the assistant's response)
+    latest_messages = messages[-2:]
+    for message in latest_messages:
         if message['role'] != 'system':
             chat_transcript += message['role'] + ": " + message['content'] + "\n\n"
 
